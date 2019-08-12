@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "461097975951",
+    "firebase_url": "https://uimihnmanagement.firebaseio.com",
+    "project_id": "uimihnmanagement",
+    "storage_bucket": "uimihnmanagement.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461097975951:android:00e6353d7bbaa1ad",
+        "android_client_info": {
+          "package_name": "com.example.uimihnmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461097975951-gmrpnd1su9p76a8re889eukfs3d40ig6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uimihnmanagement",
+            "certificate_hash": "ab9435e01e640a0211bd49e1c4c0bba3aa6fd00c"
+          }
+        },
+        {
+          "client_id": "461097975951-p6p4fb4tfemlgvgb8igesnmdjdc63j0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUk44fzdhUZuSbbmIc-fDlv7cQAK56BRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461097975951-p6p4fb4tfemlgvgb8igesnmdjdc63j0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
