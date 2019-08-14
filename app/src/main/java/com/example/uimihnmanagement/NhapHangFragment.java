@@ -125,8 +125,8 @@ public class NhapHangFragment extends Fragment {
         imgAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ThemSanPhamActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getContext(), NhapHangMoiActivity.class);
+                startActivityForResult(intent,1);
             }
         });
     }

@@ -142,9 +142,9 @@ public class ApiService {
             getSanPhamApi.enqueue(callback);
         }
     }
-    public void luuMoiSanPham(String ten, int gia, int madm,boolean tinhtrang,String mota,String hinh,int manhanhieu, Callback<Boolean> callback){
+    public void luuMoiSanPham(String ten, int gia, int madm,boolean tinhtrang,String mota,String hinh,int manhanhieu,int soluong, Callback<Boolean> callback){
         if(retrofit != null){
-            Call<Boolean> getSanPhamApi = retrofit.create(RestApi.class).luuSanPhamMoi(ten,gia, madm,tinhtrang,mota,hinh,manhanhieu);
+            Call<Boolean> getSanPhamApi = retrofit.create(RestApi.class).luuSanPhamMoi(ten,gia, madm,tinhtrang,mota,hinh,manhanhieu,soluong);
             getSanPhamApi.enqueue(callback);
         }
     }
@@ -183,6 +183,12 @@ public class ApiService {
     public void getAllPN(Callback<List<ChiTietPhieuNhap>> callback){
         if(retrofit !=null){
             Call<List<ChiTietPhieuNhap>> getAllPNApi = retrofit.create((RestApi.class)).getAllPN();
+            getAllPNApi.enqueue(callback);
+        }
+    }
+    public void getAllNhanVien(Callback<List<NhanVien>> callback){
+        if(retrofit !=null){
+            Call<List<NhanVien>> getAllPNApi = retrofit.create((RestApi.class)).getAllNhanVien();
             getAllPNApi.enqueue(callback);
         }
     }

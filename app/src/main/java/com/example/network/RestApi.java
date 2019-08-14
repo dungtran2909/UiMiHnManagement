@@ -69,7 +69,7 @@ public interface RestApi {
 
     @POST("sanpham")
     Call<Boolean> luuSanPhamMoi(@Query("tensp") String tensp, @Query("giasp") int giaSp, @Query("maDm") int maDm, @Query("tinhTrang") boolean tinhtrang,
-                                @Query("moTa") String mota, @Query("hinh") String hinh, @Query("manhanhieu") int manhanhieu);
+                                @Query("moTa") String mota, @Query("hinh") String hinh, @Query("manhanhieu") int manhanhieu, @Query("soLuong") int soluong);
     @POST("phieunhap")
     Call<Boolean> luuMoiPhieuNhap(@Query("maNv") int maNv, @Query("ngaynhap") String ngayNhap);
 
@@ -81,4 +81,7 @@ public interface RestApi {
 
     @GET("nhanvien")
     Call<List<NhanVien>> getNhanVienTheoUsername(@Query("userName") String username);
+
+    @GET("nhanvien")
+    Call<List<NhanVien>> getAllNhanVien();
 }

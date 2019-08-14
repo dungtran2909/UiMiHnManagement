@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bober_dialog"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Thêm Sản Phẩm"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtTenSanPham"
+        android:layout_margin="10dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:hint="Tên sản phẩm"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:background="@drawable/border_edittext_c"/>
+    <Spinner
+        android:id="@+id/spinner_DanhMuc"
+        android:layout_margin="10dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border_edittext_c"/>
+    <Spinner
+        android:id="@+id/spinner_NhanHieu"
+        android:layout_margin="10dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border_edittext_c"/>
+    <EditText
+        android:id="@+id/edtDonGia"
+        android:layout_margin="10dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="40dp"
+        android:hint="Đơn giá"
+        android:textColor="#000000"
+        android:background="@drawable/border_edittext_c"/>
+    <EditText
+        android:id="@+id/edtSoLuong"
+        android:layout_margin="10dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="40dp"
+        android:hint="Số lượng"
+        android:textColor="#000000"
+        android:background="@drawable/border_edittext_c"/>
+    <EditText
+        android:id="@+id/edtMoTa"
+        android:layout_margin="10dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="40dp"
+        android:hint="Mô tả chi tiết sản phẩm"
+        android:textColor="#000000"
+        android:background="@drawable/border_edittext_c"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lưu"
+            android:textColor="#FFFF"
+            android:layout_margin="5dp"
+            android:background="@drawable/bober_button_luu"
+            android:id="@+id/btnLuu"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFF"
+            android:id="@+id/btnHuy"
+            android:layout_margin="5dp"
+            android:background="@drawable/bober_button_huy"
+            android:text="Hủy"/>
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

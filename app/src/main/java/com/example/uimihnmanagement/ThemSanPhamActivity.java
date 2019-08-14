@@ -160,7 +160,7 @@ public class ThemSanPhamActivity extends AppCompatActivity {
         DanhMuc dm= (DanhMuc) spinner_danhMuc.getSelectedItem();
         NhanHieu nhanHieu= (NhanHieu) spinner_NhanHieu.getSelectedItem();
         String hinh="";
-        ApiService.getInstance().luuMoiSanPham(edtTenSanPham.getText().toString(), Integer.parseInt(edtDonGia.getText().toString()), dm.getMaDanhMuc(), true, edtMoTa.getText().toString(), hinh, nhanHieu.getMaNhanHieu(), new Callback<Boolean>() {
+        ApiService.getInstance().luuMoiSanPham(edtTenSanPham.getText().toString(), Integer.parseInt(edtDonGia.getText().toString()), dm.getMaDanhMuc(), true, edtMoTa.getText().toString(), hinh, nhanHieu.getMaNhanHieu(), Integer.parseInt(edtSoLuong.getText().toString()), new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if (response.isSuccessful()){

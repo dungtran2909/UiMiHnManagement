@@ -1,5 +1,6 @@
 package com.example.uimihnmanagement;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -90,6 +91,15 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
                 xuLyDoi();
             }
         });
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("result",1);
+                setResult(Activity.RESULT_OK,returnIntent);
+                finish();
+            }
+        });
     }
     private void xuLyDoi() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ChiTietSanPhamActivity.this);
@@ -170,15 +180,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
 
             }
         });
-        iv_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /* Intent returnIntent = new Intent();
-                returnIntent.putExtra("result",1);
-                setResult(Activity.RESULT_OK,returnIntent);*/
-                finish();
-            }
-        });
+
     }
 
     private void xuLyXoa() {

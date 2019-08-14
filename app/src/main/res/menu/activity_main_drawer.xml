@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Thống kê hàng hoá" />
         <item
+            android:id="@+id/nav_NhanSu"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Nhân sự" />
+        <item
             android:id="@+id/nav_TaiKhoan"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tài khoản" />
