@@ -172,6 +172,18 @@ public class ApiService {
             getSanPhamApi.enqueue(callback);
         }
     }
+    public void getNhanVienTheoTen(String ten,Callback<NhanVien> callback){
+        if(retrofit != null){
+            Call<NhanVien> getSanPhamApi = retrofit.create(RestApi.class).getNhanVienTheoTen(ten);
+            getSanPhamApi.enqueue(callback);
+        }
+    }
+    public void getNhanVienTheoMa(int ma,Callback<NhanVien> callback){
+        if(retrofit != null){
+            Call<NhanVien> getSanPhamApi = retrofit.create(RestApi.class).getNhanVienTheoMa(ma);
+            getSanPhamApi.enqueue(callback);
+        }
+    }
 
     public void getAllSanPham(Callback<List<SanPham>> callback){
         if(retrofit != null){
@@ -189,6 +201,12 @@ public class ApiService {
     public void getAllNhanVien(Callback<List<NhanVien>> callback){
         if(retrofit !=null){
             Call<List<NhanVien>> getAllPNApi = retrofit.create((RestApi.class)).getAllNhanVien();
+            getAllPNApi.enqueue(callback);
+        }
+    }
+    public void luuMoiNhanVien(NhanVien nhanVien,Callback<Boolean> callback){
+        if (retrofit !=null){
+            Call<Boolean> getAllPNApi = retrofit.create((RestApi.class)).luuMoiNhanVien(nhanVien.getTenNhanVien(),nhanVien.getDiaChi(),nhanVien.getPhone(),nhanVien.getEmail(),nhanVien.getUsername(),nhanVien.getPassword(),nhanVien.getRole());
             getAllPNApi.enqueue(callback);
         }
     }

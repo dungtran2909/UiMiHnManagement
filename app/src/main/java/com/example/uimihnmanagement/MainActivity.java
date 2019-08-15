@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NhapHangFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NhapHangFragments()).commit();
         toolbar.setTitle("Quản lý nhập hàng");
         Intent intent=getIntent();
         nhanVienLogin= (NhanVien) intent.getSerializableExtra("NHANVIEN");
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_NhapHang) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NhapHangFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NhapHangFragments()).commit();
             toolbar.setTitle("Quản lý nhập hàng");
         } else if (id == R.id.nav_XuatHang) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new XuatHangFragment()).commit();

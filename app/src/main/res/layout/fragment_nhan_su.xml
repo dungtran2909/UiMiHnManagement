@@ -67,6 +67,16 @@
             android:textAlignment="center"
             android:textColor="@color/colorBottomNav"
             android:textSize="18sp" />
+        <TextView
+            android:id="@+id/txtThemNV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thêm mới"
+            android:background="@drawable/border_edittext_a"
+            android:textAlignment="center"
+            android:textColor="@color/colorBottomNav"
+            android:textSize="18sp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_seach"

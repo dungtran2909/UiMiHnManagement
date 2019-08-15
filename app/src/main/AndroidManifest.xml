@@ -20,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.firebase.PushDataFirebaseActivity"></activity>
+        <activity android:name="com.example.firebase.PushDataFirebaseActivity" />
         <activity android:name=".NhapHangMoiActivity" />
         <activity android:name=".ChiTietSanPhamActivity" />
         <activity android:name=".ThemSanPhamActivity">
@@ -40,7 +40,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".ChiTietNhanSu"/>
+        <activity android:name=".ChiTietNhanSu" />
+        <activity android:name=".ImageViewActivity" />
+        <activity android:name=".ThemNhanVienActivity" />
+        <activity android:name=".ChiTietPhieuNhapActivity"/>
     </application>
 
 </manifest>

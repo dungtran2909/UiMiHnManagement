@@ -33,7 +33,7 @@
             android:textColor="@color/colorText"
 
             android:background="@drawable/boder_buuton_nangcao"
-            android:onClick="XacNhanHuy"
+           android:onClick="XacNhanHuy"
             android:text="Không" />
 
     </LinearLayout>

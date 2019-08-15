@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -70,18 +71,29 @@ public interface RestApi {
     @POST("sanpham")
     Call<Boolean> luuSanPhamMoi(@Query("tensp") String tensp, @Query("giasp") int giaSp, @Query("maDm") int maDm, @Query("tinhTrang") boolean tinhtrang,
                                 @Query("moTa") String mota, @Query("hinh") String hinh, @Query("manhanhieu") int manhanhieu, @Query("soLuong") int soluong);
+
     @POST("phieunhap")
     Call<Boolean> luuMoiPhieuNhap(@Query("maNv") int maNv, @Query("ngaynhap") String ngayNhap);
 
     @POST("CTPhieuNhap")
-    Call<Boolean> luuMoiCTPhieuNhap(@Query("mapn") int mapn, @Query("masp") int masp , @Query("soluong") int soluong, @Query("gianhap") int gianhap);
+    Call<Boolean> luuMoiCTPhieuNhap(@Query("mapn") int mapn, @Query("masp") int masp, @Query("soluong") int soluong, @Query("gianhap") int gianhap);
 
     @GET("PhieuNhap")
-    Call<List<PhieuNhap>> layPhieuNhapTheoMaNV(@Query("manv")int manv);
+    Call<List<PhieuNhap>> layPhieuNhapTheoMaNV(@Query("manv") int manv);
 
     @GET("nhanvien")
     Call<List<NhanVien>> getNhanVienTheoUsername(@Query("userName") String username);
 
+
+    @GET("nhanvien")
+    Call<NhanVien> getNhanVienTheoTen(@Query("ten") String ten);
+
     @GET("nhanvien")
     Call<List<NhanVien>> getAllNhanVien();
+
+    @POST("nhanvien")
+    Call<Boolean> luuMoiNhanVien(@Query("tennv") String tenNV, @Query("diachi") String diaChi, @Query("phone") String phone, @Query("email") String email, @Query("username") String userName, @Query("password") String password, @Query("role") int role);
+
+    @GET("nhanvien/{id}")
+    Call<NhanVien> getNhanVienTheoMa(@Path("id") int id);
 }
