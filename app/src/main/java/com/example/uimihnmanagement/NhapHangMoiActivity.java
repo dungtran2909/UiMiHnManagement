@@ -121,6 +121,12 @@ public class NhapHangMoiActivity extends AppCompatActivity {
                 xuLyLuu();
             }
         });
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
     //Lưu phiếu nhập mới
     private void xuLyLuu() {

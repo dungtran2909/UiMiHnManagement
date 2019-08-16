@@ -99,4 +99,10 @@ public class NhanVien implements Serializable {
     public void setRole(int role) {
         this.role = role;
     }
+
+
+    @Override
+    public String toString() {
+        return maNV+" - "+ tenNhanVien;
+    }
 }
