@@ -103,6 +103,6 @@ public class NhanVien implements Serializable {
 
     @Override
     public String toString() {
-        return maNV+" - "+ tenNhanVien;
+        return tenNhanVien;
     }
 }

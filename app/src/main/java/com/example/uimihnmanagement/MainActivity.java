@@ -1,5 +1,6 @@
 package com.example.uimihnmanagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         }else if (id == R.id.nav_home) {
-            Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+            Intent intent = new Intent(MainActivity.this, UserListChatActivity.class);
             startActivity(intent);
         }
 

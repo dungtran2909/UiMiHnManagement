@@ -1,5 +1,6 @@
 package com.example.uimihnmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 
 import com.example.adapter.ChatAdapter;
 import com.example.firebase.ChatMessage;
@@ -36,7 +36,7 @@ import cz.msebera.android.httpclient.HttpHeaders;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatSingelActivity extends AppCompatActivity {
     FloatingActionButton fabSend;
     EditText edtInput;
     RecyclerView rcyMessege;
@@ -48,6 +48,9 @@ public class ChatActivity extends AppCompatActivity {
     private DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
     String urlImage = "https://github.com/quoccuong151197/AppAndroid/blob/master/app/src/main/res/drawable/ic_fist_sub.png";
     private static final String TAG = "ChatActivity";
+    String child="";
+
+    NhanVien nhanVienChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,8 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String aaaaa = urlImage;
-                mData.child("chats")
+                mData.child("chatsingel")
+                        .child(child)
                         .push()
                         .setValue(new ChatMessage(edtInput.getText().toString(), nhanVien.getUsername(), urlImage));
                 sendNotification(edtInput.getText().toString());
@@ -78,19 +82,24 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void addControls() {
+        Intent intent=getIntent();
+        nhanVienChat= (NhanVien) intent.getSerializableExtra("NHANVIENCHAT");
+        child=MainActivity.nhanVienLogin.getUsername()+nhanVienChat.getUsername();
         dsMessages = new ArrayList<>();
         fabSend = findViewById(R.id.fab);
         edtInput = findViewById(R.id.edtInput);
         imgBack = findViewById(R.id.iv_back);
         rcyMessege = findViewById(R.id.lvMessages);
-        rcyMessege.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
-        adapter = new ChatAdapter(ChatActivity.this, dsMessages, nhanVien);
+        rcyMessege.setLayoutManager(new LinearLayoutManager(ChatSingelActivity.this));
+        adapter = new ChatAdapter(ChatSingelActivity.this, dsMessages, nhanVien);
         rcyMessege.setAdapter(adapter);
         displayChatMessages();
+
+
     }
 
     private void displayChatMessages() {
-        mData.child("chats").addChildEventListener(new ChildEventListener() {
+        mData.child("chatsingel").child(child).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 ChatMessage chatMessage = dataSnapshot.getValue(ChatMessage.class);

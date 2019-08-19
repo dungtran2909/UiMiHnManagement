@@ -32,8 +32,7 @@
             android:id="@+id/txt_totalALlN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
-            android:text="555555"/>
+            android:textColor="@color/colorBlack"/>
 
     </LinearLayout>
 

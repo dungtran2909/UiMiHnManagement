@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.model.ChiTietPhieuNhap;
 import com.example.model.ChiTietPhieuXuat;
+import com.example.model.DanhMuc;
 import com.example.model.ItemNhap;
 import com.example.model.PhieuNhap;
 import com.example.model.SanPham;
@@ -32,7 +33,7 @@ public class ThongKeFragment extends Fragment {
 
     ArrayList<SanPham> sanPhams;
     TabHost tabHost;
-    FloatingActionButton fabBack;
+    int total=0;
 
     @Nullable
     @Override
@@ -45,109 +46,18 @@ public class ThongKeFragment extends Fragment {
     }
 
     private void addEvents() {
-        fabBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
     }
-
-    private void getAllCTN(){
-        ApiService.getInstance().getAllPN(new Callback<List<ChiTietPhieuNhap>>() {
-            @Override
-            public void onResponse(Call<List<ChiTietPhieuNhap>> call, Response<List<ChiTietPhieuNhap>> response) {
-                if (response.isSuccessful()){
-                    ArrayList<ChiTietPhieuNhap> ctpn = (ArrayList<ChiTietPhieuNhap>) response.body();
-                    int length = ctpn.size();
-                    ChiTietPhieuXuat ctpns;
-                    int total = 0;
-                    for(int i=0;i<length;i++){
-                        int s = ctpn.get(i).getSoLuong();
-                        total = total +s;
-
-                    }
-                    txt_totalALlN.setText(total+"");
-                }
-            }
-            @Override
-            public void onFailure(Call<List<ChiTietPhieuNhap>> call, Throwable t) {
-
-            }
-
-        });
-    }
-
-    private void getDataSPNhap() {
-        ApiService.getInstance().getListPhieuNhap(new Callback<List<PhieuNhap>>() {
-            @Override
-            public void onResponse(Call<List<PhieuNhap>> call, Response<List<PhieuNhap>> response) {
-                ArrayList<PhieuNhap> arrPhieuNhap = (ArrayList<PhieuNhap>) response.body();
-                for (PhieuNhap pn : arrPhieuNhap) {
-                    getDataDetailPN(pn);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<PhieuNhap>> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void getDataDetailPN(final PhieuNhap pn) {
-        ApiService.getInstance().getDetailPhieuNhap(pn.getMaPhieuNhap(), new Callback<List<ChiTietPhieuNhap>>() {
-            @Override
-            public void onResponse(Call<List<ChiTietPhieuNhap>> call, Response<List<ChiTietPhieuNhap>> response) {
-                if (response.isSuccessful()) {
-                    List<ChiTietPhieuNhap> arrChiTietPN = response.body();
-                    for (ChiTietPhieuNhap ctpn : arrChiTietPN) {
-                        getDataSanPham(ctpn);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ChiTietPhieuNhap>> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void getDataSanPham(final ChiTietPhieuNhap ctpn) {
-        ApiService.getInstance().getSanPham(ctpn.getMaSP(), new Callback<SanPham>() {
-            @Override
-            public void onResponse(Call<SanPham> call, Response<SanPham> response) {
-                if (response.isSuccessful()) {
-                    SanPham sp = response.body();
-
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SanPham> call, Throwable t) {
-
-            }
-        });
-    }
-
-
-
 
 
     private void addControls() {
-        getAllCTN();
-        fabBack = view.findViewById(R.id.fabBack);
-
         txt_totalALlN = view.findViewById(R.id.txt_totalALlN);
         txt_totalDTN = view.findViewById(R.id.txt_totalDTN);
         txt_totalLTN = view.findViewById(R.id.txt_totalLTN);
         txt_totalMTBN = view.findViewById(R.id.txt_totalMTBN);
         txt_totalDHN = view.findViewById(R.id.txt_totalDHN);
         txt_totalPKN = view.findViewById(R.id.txt_totalPKN);
-
+        txt_totalTVN=view.findViewById(R.id.txt_totalTVN);
 
 
         tabHost = view.findViewById(R.id.tabHost);
@@ -162,5 +72,72 @@ public class ThongKeFragment extends Fragment {
         tab2.setIndicator("Xuất");
         tab2.setContent(R.id.tab2);
         tabHost.addTab(tab2);
+
+        getSanPham();
+    }
+
+    private void getSanPham() {
+        ApiService.getInstance().getDanhMuc(new Callback<List<DanhMuc>>() {
+            @Override
+            public void onResponse(Call<List<DanhMuc>> call, Response<List<DanhMuc>> response) {
+                if (response.isSuccessful()){
+                    ArrayList<DanhMuc> danhMucs= (ArrayList<DanhMuc>) response.body();
+                    for (DanhMuc danhMuc : danhMucs){
+                        getListSanPhamTheoDanhMuc(danhMuc);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DanhMuc>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getListSanPhamTheoDanhMuc(final DanhMuc danhMuc) {
+        ApiService.getInstance().getListSanPhamTheoDanhMuc(danhMuc.getMaDanhMuc(), new Callback<List<SanPham>>() {
+            @Override
+            public void onResponse(Call<List<SanPham>> call, Response<List<SanPham>> response) {
+                if (response.isSuccessful()){
+                    int soLuongTon=0;
+                    ArrayList<SanPham> sanPhams= (ArrayList<SanPham>) response.body();
+                    for (SanPham sanPham : sanPhams){
+                        soLuongTon+=sanPham.getSoLuongTon();
+
+                    }
+                    updateSoLuong(danhMuc,soLuongTon);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SanPham>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void updateSoLuong(DanhMuc danhMuc, int soLuongTon) {
+        total+=soLuongTon;
+        txt_totalALlN.setText(total+"");
+        if (danhMuc.getMaDanhMuc()==1){
+            txt_totalDTN.setText(soLuongTon+"");
+        }
+        else if (danhMuc.getMaDanhMuc()==2){
+            txt_totalTVN.setText(soLuongTon+"");
+        }
+        else if (danhMuc.getMaDanhMuc()==3){
+            txt_totalLTN.setText(soLuongTon+"");
+        }
+        else if (danhMuc.getMaDanhMuc()==4){
+            txt_totalMTBN.setText(soLuongTon+"");
+        }
+        else if (danhMuc.getMaDanhMuc()==5){
+            txt_totalDHN.setText(soLuongTon+"");
+        }
+        else if (danhMuc.getMaDanhMuc()==6){
+            txt_totalPKN.setText(soLuongTon+"");
+        }
     }
 }
