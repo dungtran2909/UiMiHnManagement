@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/txtTenNhanVien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên nhân viên"
+        android:layout_margin="@dimen/w5"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/sp18"/>
+    <TextView
+        android:id="@+id/txtTrangThai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên nhân viên"
+        android:layout_margin="@dimen/w5"
+        android:textColor="@color/colorBlack"
+        android:textStyle="italic"
+        android:textAlignment="textEnd"
+        android:textSize="@dimen/sp14"/>
+
+</LinearLayout>

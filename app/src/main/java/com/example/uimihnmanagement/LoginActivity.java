@@ -19,6 +19,7 @@ import com.example.model.NhanVien;
 import com.example.network.ApiService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
@@ -109,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void addControls() {
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);

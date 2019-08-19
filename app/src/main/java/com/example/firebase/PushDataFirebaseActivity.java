@@ -33,7 +33,7 @@ public class PushDataFirebaseActivity extends AppCompatActivity {
                         nhanVienFirebases.add(new NhanVienFirebase(nv.getMaNV(),nv.getTenNhanVien(),nv.getEmail(),nv.getUsername(),nv.getPassword(),"https://firebasestorage.googleapis.com/v0/b/uimihnmanagement.appspot.com/o/download.jpg?alt=media&token=62202454-39d4-4e5d-91c1-76eee9dcd9ff"));
                     }
                     for (NhanVienFirebase firebase : nhanVienFirebases){
-                        mData.child("NhanVien").child(firebase.getUserName()).setValue(firebase);
+                        mData.child("status").child(firebase.getUserName()).setValue(0);
                     }
                 }
             }

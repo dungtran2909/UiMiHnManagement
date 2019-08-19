@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.model.NhanVien;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity
         Intent intent=getIntent();
         nhanVienLogin= (NhanVien) intent.getSerializableExtra("NHANVIEN");
 
+        setStatus();
+    }
+
+    private void setStatus() {
+        FirebaseDatabase.getInstance().getReference().child("status").child(nhanVienLogin.getUsername()).setValue(1);
     }
 
     @Override
@@ -108,5 +114,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FirebaseDatabase.getInstance().getReference().child("status").child(nhanVienLogin.getUsername()).setValue(0);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseDatabase.getInstance().getReference().child("status").child(nhanVienLogin.getUsername()).setValue(1);
     }
 }

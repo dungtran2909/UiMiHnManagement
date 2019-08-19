@@ -22,6 +22,16 @@ public class NhanVien implements Serializable {
     @SerializedName("Role")
     private  int role;
 
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public NhanVien(int maNV, String username, String password, String tenNhanVien, String email, String phone, String diaChi, int role) {
         this.maNV = maNV;
         this.username = username;
