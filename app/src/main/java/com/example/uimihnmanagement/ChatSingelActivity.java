@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.adapter.ChatAdapter;
 import com.example.firebase.ChatMessage;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -50,12 +52,14 @@ public class ChatSingelActivity extends AppCompatActivity {
     private static final String TAG = "ChatActivity";
     String child="";
 
+    TextView txtChatGuest,txtChucVu;
+
     NhanVien nhanVienChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        setContentView(R.layout.activity_chat_singel);
         addControls();
         addEvents();
     }
@@ -93,12 +97,35 @@ public class ChatSingelActivity extends AppCompatActivity {
         rcyMessege.setLayoutManager(new LinearLayoutManager(ChatSingelActivity.this));
         adapter = new ChatAdapter(ChatSingelActivity.this, dsMessages, nhanVien);
         rcyMessege.setAdapter(adapter);
-        displayChatMessages();
+        mData.child("chatsingel").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(child)==false){
+                    child=nhanVienChat.getUsername()+MainActivity.nhanVienLogin.getUsername();
+                }
+                displayChatMessages();
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        txtChatGuest=findViewById(R.id.txtChatGuest);
+        txtChucVu=findViewById(R.id.txtChucVu);
+        txtChatGuest.setText(nhanVienChat.getTenNhanVien());
+        if (nhanVienChat.getRole()==0){
+            txtChucVu.setText("Quản lý");
+        }
+        else
+            txtChucVu.setText("Nhân viên");
     }
 
+
+
+
     private void displayChatMessages() {
+
         mData.child("chatsingel").child(child).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -145,7 +172,7 @@ public class ChatSingelActivity extends AppCompatActivity {
 
             JSONObject notificationObject = new JSONObject();
             notificationObject.put("body", URLEncoder.encode(s));
-            notificationObject.put("title", URLEncoder.encode( "Gủi từ"+ removeAccent(nhanVien.getUsername())));
+            notificationObject.put("title", URLEncoder.encode( "Gủi từ "+ removeAccent(nhanVien.getUsername())));
 
             params.put("notification", notificationObject);
 

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.model.NhanVien;
@@ -23,6 +25,8 @@ public class UserListChatActivity extends AppCompatActivity {
     ListView lvUserChat;
     ArrayAdapter<NhanVien> nhanVienArrayAdapter;
     ArrayList<NhanVien> nhanViens;
+    ImageView imgBack;
+    Button btnChatNhom;
 
 
     @Override
@@ -44,11 +48,26 @@ public class UserListChatActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        btnChatNhom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(UserListChatActivity.this,ChatActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
 
     private void addControls() {
+        imgBack=findViewById(R.id.iv_backNhanVien);
+        btnChatNhom=findViewById(R.id.btnChatNhom);
         nhanViens= new ArrayList<>();
         lvUserChat=findViewById(R.id.lvUserChat);
         nhanVienArrayAdapter= new ArrayAdapter<>(UserListChatActivity.this,android.R.layout.simple_list_item_1,nhanViens);

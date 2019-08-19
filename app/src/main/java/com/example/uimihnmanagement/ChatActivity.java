@@ -136,7 +136,7 @@ public class ChatActivity extends AppCompatActivity {
 
             JSONObject notificationObject = new JSONObject();
             notificationObject.put("body", URLEncoder.encode(s));
-            notificationObject.put("title", URLEncoder.encode( "Gủi từ"+ removeAccent(nhanVien.getUsername())));
+            notificationObject.put("title", URLEncoder.encode( "Gủi từ "+ removeAccent(nhanVien.getUsername())));
 
             params.put("notification", notificationObject);
 
