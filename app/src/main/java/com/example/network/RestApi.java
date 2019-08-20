@@ -108,4 +108,7 @@ public interface RestApi {
 
     @GET("ctdonhang/{id}")
     Call<List<ChiTietDonHang>> getCTDonHangTheoMa(@Query("id") int id);
+
+    @POST("donhang")
+    Call<Boolean> editTrangThaiDonHang(@Query("madhSua") int maDH, @Query("trangThai") int trangThai);
 }

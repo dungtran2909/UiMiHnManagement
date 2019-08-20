@@ -1,5 +1,6 @@
 package com.example.uimihnmanagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.adapter.SanPhamAdapter;
 import com.example.adapter.SanPhamNhapMoiAdapter;
@@ -34,7 +36,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
     ArrayList<SanPham> sanPhams;
     DonHang donHang;
     ArrayAdapter trangthaiAdapter;
-    ImageView imgBack, imgSave;
+    ImageView imgBack, imgSave, imgEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +50,47 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
         imgSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int trangthai=spinnerTrangThai.getSelectedItemPosition()+1;
-
+                int trangthai=spinnerTrangThai.getSelectedItemPosition();
+                updateTrangThaiDonHang(trangthai);
+            }
+        });
+        imgEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                spinnerTrangThai.setEnabled(true);
+                imgSave.setVisibility(View.VISIBLE);
+                imgEdit.setVisibility(View.GONE);
             }
         });
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_OK,returnIntent);
                 finish();
+            }
+        });
+    }
+
+    private void updateTrangThaiDonHang(int trangthai) {
+        ApiService.getInstance().editTrangThaiDonHang(donHang.getMaDonHang(), trangthai, new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()){
+                    boolean kq=response.body();
+                    if (kq==true){
+                        Toast.makeText(ChiTietDonHangActivity.this,"Lưu thành công",Toast.LENGTH_LONG).show();
+                        imgEdit.setVisibility(View.VISIBLE);
+                        imgSave.setVisibility(View.GONE);
+                    }
+                    else
+                        Toast.makeText(ChiTietDonHangActivity.this,"Lưu thất bại, vui lòng thử lại",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
             }
         });
     }
@@ -73,18 +108,22 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
 
         imgBack=findViewById(R.id.iv_backChiTiet);
         imgSave=findViewById(R.id.imgSave);
+        imgSave.setVisibility(View.GONE);
+        imgEdit=findViewById(R.id.imgEdit);
+        imgEdit.setVisibility(View.VISIBLE);
 
         ArrayList<String> trangthais=new ArrayList<>();
-        trangthais.add("Chờ duyệt");
-        trangthais.add("Đã duyệt");
-        trangthais.add("Đang giao");
-        trangthais.add("Hoàn thành");
+        trangthais.add("Chờ duyệt");//0
+        trangthais.add("Đã duyệt");//1
+        trangthais.add("Đang giao");//2
+        trangthais.add("Hoàn thành");//3
 
         trangthaiAdapter= new ArrayAdapter(ChiTietDonHangActivity.this,android.R.layout.simple_spinner_item);
         trangthaiAdapter.addAll(trangthais);
         spinnerTrangThai.setAdapter(trangthaiAdapter);
 
-        spinnerTrangThai.setSelection(donHang.getTrangThai()-1);
+        spinnerTrangThai.setSelection(donHang.getTrangThai());
+        spinnerTrangThai.setEnabled(false);
         getTenKhachHang(donHang.getMaKH());
         getCTDonHang(donHang.getMaDonHang());
     }

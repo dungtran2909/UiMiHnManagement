@@ -231,4 +231,10 @@ public class ApiService {
             getApi.enqueue(callback);
         }
     }
+    public void editTrangThaiDonHang(int maDH, int trangThai, Callback<Boolean> callback){
+        if (retrofit!=null){
+            Call<Boolean> edtAPI=retrofit.create(RestApi.class).editTrangThaiDonHang(maDH,trangThai);
+            edtAPI.enqueue(callback);
+        }
+    }
 }

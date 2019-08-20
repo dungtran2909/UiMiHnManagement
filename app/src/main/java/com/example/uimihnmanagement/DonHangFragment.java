@@ -1,5 +1,6 @@
 package com.example.uimihnmanagement;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,7 +50,7 @@ public class DonHangFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent= new Intent(view.getContext(),ChiTietDonHangActivity.class);
                 intent.putExtra("DONHANG",donHangs.get(i));
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
     }
@@ -78,5 +79,16 @@ public class DonHangFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                donHangAdapter.clear();
+                getAllDonHang();
+            }
+        }
     }
 }

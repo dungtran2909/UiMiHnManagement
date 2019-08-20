@@ -115,6 +115,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, UserListChatActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_TaiKhoan) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TaiKhoanFragment()).commit();
+            toolbar.setTitle("Thông tin tài khoản");
+
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
