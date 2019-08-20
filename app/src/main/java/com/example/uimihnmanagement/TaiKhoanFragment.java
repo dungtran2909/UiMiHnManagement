@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.firebase.NhanVienFirebase;
 import com.example.model.DanhMuc;
@@ -100,6 +101,47 @@ public class TaiKhoanFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 xuLySua();
+            }
+        });
+        bt_Luu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                MainActivity.nhanVienLogin.setTenNhanVien(et_Ten.getText().toString());
+                MainActivity.nhanVienLogin.setDiaChi(et_DiaChi.getText().toString());
+                MainActivity.nhanVienLogin.setPhone(et_Sdt.getText().toString());
+                MainActivity.nhanVienLogin.setEmail(et_Email.getText().toString());
+                ApiService.getInstance().updateNhanVien(MainActivity.nhanVienLogin, new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        if (response.isSuccessful()){
+                            boolean kq=response.body();
+                            if (kq==true){
+                                Toast.makeText(view.getContext(),"Lưu thành công",Toast.LENGTH_LONG).show();
+                                et_Ma.setEnabled(false);
+                                et_Ten.setEnabled(false);
+                                et_ChucVu.setEnabled(false);
+                                et_User.setEnabled(false);
+                                et_Email.setEnabled(false);
+                                et_Sdt.setEnabled(false);
+                                et_DiaChi.setEnabled(false);
+                            }
+                            else
+                                Toast.makeText(view.getContext(),"Lưu thất bại, vui lòng kiểm tra lại",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+        bt_DoiMK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(view.getContext(),DoiMatKhauActivity.class);
+                startActivity(intent);
             }
         });
     }

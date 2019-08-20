@@ -213,6 +213,18 @@ public class ApiService {
             getAllPNApi.enqueue(callback);
         }
     }
+    public void updateNhanVien(NhanVien nhanVien,Callback<Boolean> callback){
+        if (retrofit !=null){
+            Call<Boolean> getAllPNApi = retrofit.create((RestApi.class)).updateNhanVien(nhanVien.getMaNV(),nhanVien.getTenNhanVien(),nhanVien.getDiaChi(),nhanVien.getPhone(),nhanVien.getEmail(),nhanVien.getUsername(),nhanVien.getPassword(),nhanVien.getRole());
+            getAllPNApi.enqueue(callback);
+        }
+    }
+    public void doiMatKhauNhanVien(int maNV, String password,Callback<Boolean> callback){
+        if (retrofit !=null){
+            Call<Boolean> getAllPNApi = retrofit.create((RestApi.class)).doiMatKhau(maNV,password);
+            getAllPNApi.enqueue(callback);
+        }
+    }
     public void getAllDonHang(Callback<List<DonHang>> callback){
         if(retrofit!=null){
             Call<List<DonHang>> getAllDonHang=retrofit.create(RestApi.class).getAllDonHang();

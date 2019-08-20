@@ -48,6 +48,7 @@
         <activity android:name=".ChiTietPhieuNhapActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".ChatSingelActivity" />
+        <activity android:name=".DoiMatKhauActivity"/>
 
         <service android:name="com.example.firebasemessage.MyFirebaseMessagingService">
             <intent-filter>

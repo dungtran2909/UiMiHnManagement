@@ -97,6 +97,12 @@ public interface RestApi {
     @POST("nhanvien")
     Call<Boolean> luuMoiNhanVien(@Query("tennv") String tenNV, @Query("diachi") String diaChi, @Query("phone") String phone, @Query("email") String email, @Query("username") String userName, @Query("password") String password, @Query("role") int role);
 
+    @POST("nhanvien")
+    Call<Boolean> doiMatKhau(@Query("maNVDoiMK") int maNV, @Query("password") String password);
+
+    @POST("nhanvien")
+    Call<Boolean> updateNhanVien(@Query("maNVSua") int maNhanVienSua, @Query("tennv") String tenNV, @Query("diachi") String diaChi, @Query("phone") String phone, @Query("email") String email, @Query("username") String userName, @Query("password") String password, @Query("role") int role);
+
     @GET("nhanvien/{id}")
     Call<NhanVien> getNhanVienTheoMa(@Path("id") int id);
 
