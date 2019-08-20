@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:orientation="horizontal">
+    <TextView
+        android:textAlignment="center"
+        android:id="@+id/txtMaDonHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Ma don hang"
+        android:textSize="@dimen/w16"
+        android:textColor="@color/colorBlack"/>
+    <TextView
+        android:id="@+id/txtTenKhachHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ten khach hang"
+        android:textSize="@dimen/w16"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"/>
+    <TextView
+        android:id="@+id/txtTrangThai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="trang thai"
+        android:textSize="@dimen/w16"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"/>
+</LinearLayout>

@@ -102,6 +102,11 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NhanSuFragment()).commit();
             toolbar.setTitle("Thống kê nhập xuất");
 
+        }
+        else if (id == R.id.nav_DonHang) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DonHangFragment()).commit();
+            toolbar.setTitle("Đơn hàng");
+
         }else if (id == R.id.nav_tools) {
             Intent intent= new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);

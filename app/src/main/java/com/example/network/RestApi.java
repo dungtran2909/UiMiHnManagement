@@ -1,13 +1,16 @@
 package com.example.network;
 
+import com.example.model.ChiTietDonHang;
 import com.example.model.ChiTietPhieuNhap;
 import com.example.model.ChiTietPhieuXuat;
 import com.example.model.DanhMuc;
+import com.example.model.DonHang;
 import com.example.model.NhanHieu;
 import com.example.model.NhanVien;
 import com.example.model.PhieuNhap;
 import com.example.model.PhieuXuat;
 import com.example.model.SanPham;
+import com.example.model.User;
 
 import java.util.Date;
 import java.util.List;
@@ -96,4 +99,13 @@ public interface RestApi {
 
     @GET("nhanvien/{id}")
     Call<NhanVien> getNhanVienTheoMa(@Path("id") int id);
+
+    @GET("donhang")
+    Call<List<DonHang>> getAllDonHang();
+
+    @GET("khachhang/{id}")
+    Call<User> getUsertheoMa(@Query("id") int id);
+
+    @GET("ctdonhang/{id}")
+    Call<List<ChiTietDonHang>> getCTDonHangTheoMa(@Query("id") int id);
 }

@@ -3,14 +3,17 @@ package com.example.network;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.example.model.ChiTietDonHang;
 import com.example.model.ChiTietPhieuNhap;
 import com.example.model.ChiTietPhieuXuat;
 import com.example.model.DanhMuc;
+import com.example.model.DonHang;
 import com.example.model.NhanHieu;
 import com.example.model.NhanVien;
 import com.example.model.PhieuNhap;
 import com.example.model.PhieuXuat;
 import com.example.model.SanPham;
+import com.example.model.User;
 
 import java.util.List;
 
@@ -208,6 +211,24 @@ public class ApiService {
         if (retrofit !=null){
             Call<Boolean> getAllPNApi = retrofit.create((RestApi.class)).luuMoiNhanVien(nhanVien.getTenNhanVien(),nhanVien.getDiaChi(),nhanVien.getPhone(),nhanVien.getEmail(),nhanVien.getUsername(),nhanVien.getPassword(),nhanVien.getRole());
             getAllPNApi.enqueue(callback);
+        }
+    }
+    public void getAllDonHang(Callback<List<DonHang>> callback){
+        if(retrofit!=null){
+            Call<List<DonHang>> getAllDonHang=retrofit.create(RestApi.class).getAllDonHang();
+            getAllDonHang.enqueue(callback);
+        }
+    }
+    public void getUserTheoMa(int id, Callback<User> callback) {
+        if (retrofit != null) {
+            Call<User> getUserApi = retrofit.create(RestApi.class).getUsertheoMa(id);
+            getUserApi.enqueue(callback);
+        }
+    }
+    public void getCTDonHangTheoMa(int id, Callback<List<ChiTietDonHang>> callback){
+        if (retrofit!=null){
+            Call<List<ChiTietDonHang>> getApi=retrofit.create(RestApi.class).getCTDonHangTheoMa(id);
+            getApi.enqueue(callback);
         }
     }
 }

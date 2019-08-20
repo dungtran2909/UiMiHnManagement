@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserListChatActivity"></activity>
+        <activity android:name=".ChiTietDonHangActivity"></activity>
+        <activity android:name=".UserListChatActivity" />
         <activity android:name="com.example.firebase.PushDataFirebaseActivity" />
         <activity android:name=".NhapHangMoiActivity" />
         <activity android:name=".ChiTietSanPhamActivity" />
@@ -46,7 +47,8 @@
         <activity android:name=".ThemNhanVienActivity" />
         <activity android:name=".ChiTietPhieuNhapActivity" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".ChatSingelActivity"/>
+        <activity android:name=".ChatSingelActivity" />
+
         <service android:name="com.example.firebasemessage.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

@@ -35,6 +35,8 @@ import java.util.regex.Pattern;
 import cz.msebera.android.httpclient.HttpHeaders;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
+import static com.example.uimihnmanagement.MainActivity.nhanVienLogin;
+
 
 public class ChatActivity extends AppCompatActivity {
     FloatingActionButton fabSend;
@@ -53,6 +55,7 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        FirebaseDatabase.getInstance().getReference().child("status").child(nhanVienLogin.getUsername()).setValue(1);
         addControls();
         addEvents();
     }
@@ -162,5 +165,11 @@ public class ChatActivity extends AppCompatActivity {
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FirebaseDatabase.getInstance().getReference().child("status").child(nhanVienLogin.getUsername()).setValue(0);
     }
 }
