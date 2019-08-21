@@ -120,6 +120,14 @@ public class MainActivity extends AppCompatActivity
             toolbar.setTitle("Thông tin tài khoản");
 
         }
+        else if (id == R.id.nav_gallery) {
+            Intent intent= new Intent(MainActivity.this,DoiMatKhauActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_CSKH) {
+            Intent intent= new Intent(MainActivity.this,ChamSocKhachHangActivity.class);
+            startActivity(intent);
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -6,7 +6,7 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="text_normal" tools:ignore="MissingDefaultResource">15sp</dimen>
     <dimen name="textsize">18dp</dimen> <!-- main fragment -->
@@ -91,7 +91,7 @@
     <dimen name="width_btn_login">90dp</dimen>
     <dimen name="height_btn_login">52dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
- 
+
 
     <!-- image chat -->
     <dimen name="btn_chat_size">45dp</dimen>

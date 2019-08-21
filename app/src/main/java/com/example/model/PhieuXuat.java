@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class PhieuXuat implements Serializable {
+    @SerializedName("MaDonHang")
+    private int MaDonHang;
+
     @SerializedName("MaPhieuXuat")
     private int MaPhieuXuat;
 
@@ -17,10 +20,19 @@ public class PhieuXuat implements Serializable {
     public PhieuXuat() {
     }
 
-    public PhieuXuat(int maPhieuXuat, int maNV, String ngayXuat) {
+    public PhieuXuat(int maDonHang, int maPhieuXuat, int maNV, String ngayXuat) {
+        MaDonHang = maDonHang;
         MaPhieuXuat = maPhieuXuat;
         MaNV = maNV;
         NgayXuat = ngayXuat;
+    }
+
+    public int getMaDonHang() {
+        return MaDonHang;
+    }
+
+    public void setMaDonHang(int maDonHang) {
+        MaDonHang = maDonHang;
     }
 
     public int getMaPhieuXuat() {

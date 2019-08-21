@@ -21,6 +21,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Thống kê hàng hoá" />
         <item
+            android:id="@+id/nav_CSKH"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Chăm sóc khách hàng" />
+        <item
             android:id="@+id/nav_NhanSu"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Nhân sự" />

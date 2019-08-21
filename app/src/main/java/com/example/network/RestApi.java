@@ -1,5 +1,7 @@
 package com.example.network;
 
+import android.widget.ListView;
+
 import com.example.model.ChiTietDonHang;
 import com.example.model.ChiTietPhieuNhap;
 import com.example.model.ChiTietPhieuXuat;
@@ -117,4 +119,25 @@ public interface RestApi {
 
     @POST("donhang")
     Call<Boolean> editTrangThaiDonHang(@Query("madhSua") int maDH, @Query("trangThai") int trangThai);
+
+    @POST("phieuxuat")
+    Call<Boolean> createNewPhieuXuat(@Query("maNV") int maNV,@Query("ngayXuat") String ngayXuat,@Query("maDonHang") int maDonHang);
+
+    @GET("phieuxuat")
+    Call<List<PhieuXuat>> getPhieuXuatTheoMaDonHang(@Query("maDonHang") int maDonHang);
+
+    @POST("ctphieuxuat")
+    Call<Boolean> createNewChiTietPhieuXuat(@Query("mapx") int mapx,@Query("maSP") int maSP,@Query("soLuong") int soLuong);
+
+    @GET("ctphieuxuat")
+    Call<List<ChiTietPhieuXuat>> getAllCTPhieuXuat();
+
+    @GET("phieuxuat")
+    Call<List<PhieuXuat>> getAllPhieuXuat();
+
+    @GET("phieuxuat")
+    Call<List<PhieuXuat>> getPhieuXuatTheoMaNV(@Query("maNV") int maNV);
+
+    @GET("ctphieuxuat/{id}")
+    Call<List<ChiTietPhieuXuat>> getPhieuXuatTheoMa(@Path("id") int id);
 }

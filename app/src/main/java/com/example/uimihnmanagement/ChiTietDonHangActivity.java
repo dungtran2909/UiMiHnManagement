@@ -15,13 +15,17 @@ import android.widget.Toast;
 import com.example.adapter.SanPhamAdapter;
 import com.example.adapter.SanPhamNhapMoiAdapter;
 import com.example.model.ChiTietDonHang;
+import com.example.model.ChiTietPhieuXuat;
 import com.example.model.DonHang;
+import com.example.model.PhieuXuat;
 import com.example.model.SanPham;
 import com.example.model.User;
 import com.example.network.ApiService;
 import com.google.android.gms.common.api.Api;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,6 +41,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
     DonHang donHang;
     ArrayAdapter trangthaiAdapter;
     ImageView imgBack, imgSave, imgEdit;
+    SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,11 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int trangthai=spinnerTrangThai.getSelectedItemPosition();
-                updateTrangThaiDonHang(trangthai);
+                if (trangthai>donHang.getTrangThai()){
+                    updateTrangThaiDonHang(trangthai);
+                }
+                else
+                    Toast.makeText(ChiTietDonHangActivity.this,"Không thể lưu",Toast.LENGTH_LONG).show();
             }
         });
         imgEdit.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +91,10 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
                         Toast.makeText(ChiTietDonHangActivity.this,"Lưu thành công",Toast.LENGTH_LONG).show();
                         imgEdit.setVisibility(View.VISIBLE);
                         imgSave.setVisibility(View.GONE);
+                        //tạo mới phiếu xuất
+                        if (spinnerTrangThai.getSelectedItemPosition()==1){
+                            createNewPhieuXuat();
+                        }
                     }
                     else
                         Toast.makeText(ChiTietDonHangActivity.this,"Lưu thất bại, vui lòng thử lại",Toast.LENGTH_LONG).show();
@@ -93,6 +106,72 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void createNewPhieuXuat() {
+        PhieuXuat phieuXuat= new PhieuXuat();
+        phieuXuat.setMaDonHang(donHang.getMaDonHang());
+        phieuXuat.setMaNV(MainActivity.nhanVienLogin.getMaNV());
+        phieuXuat.setNgayXuat(simpleDateFormat.format(new Date(System.currentTimeMillis())));
+        ApiService.getInstance().createNewPhieuXuat(phieuXuat, new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()){
+                    boolean kq=response.body();
+                    if (kq==true){
+                        Toast.makeText(ChiTietDonHangActivity.this,"Tạo phiếu xuất thành công",Toast.LENGTH_LONG).show();
+
+                        //lấy chi tiết phiếu xuất mới tạo
+                        getPhieuXuat();
+                    }
+                    else
+                        Toast.makeText(ChiTietDonHangActivity.this,"Tạo phiếu xuất thất bại, vui lòng kiểm tra lại",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getPhieuXuat() {
+        ApiService.getInstance().getPhieuXuatTheoMaDonHang(donHang.getMaDonHang(), new Callback<List<PhieuXuat>>() {
+            @Override
+            public void onResponse(Call<List<PhieuXuat>> call, Response<List<PhieuXuat>> response) {
+                if (response.isSuccessful()){
+                    ArrayList<PhieuXuat> phieuXuatArrayList= (ArrayList<PhieuXuat>) response.body();
+                    createChiTietPhieuXuat(phieuXuatArrayList.get(0).getMaPhieuXuat());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<PhieuXuat>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void createChiTietPhieuXuat(int maPhieuXuat) {
+        for (final SanPham sanPham : sanPhams){
+            ApiService.getInstance().createNewChiTietPhieuXuat(new ChiTietPhieuXuat(maPhieuXuat, sanPham.getMaSP(), sanPham.getSoLuongTon()), new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    if (response.isSuccessful()){
+                        boolean kq=response.body();
+                        if (kq==true){
+                            System.out.println(sanPham.getTenSP()+" thêm cho tiết phiếu nhập thành công");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+
+                }
+            });
+        }
     }
 
     private void addControls() {

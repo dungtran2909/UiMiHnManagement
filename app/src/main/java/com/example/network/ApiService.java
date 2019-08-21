@@ -249,4 +249,46 @@ public class ApiService {
             edtAPI.enqueue(callback);
         }
     }
+    public void createNewPhieuXuat(PhieuXuat phieuXuat,Callback<Boolean> callback){
+        if (retrofit!=null){
+            Call<Boolean> api=retrofit.create(RestApi.class).createNewPhieuXuat(phieuXuat.getMaNV(),phieuXuat.getNgayXuat(),phieuXuat.getMaDonHang());
+            api.enqueue(callback);
+        }
+    }
+    public void getPhieuXuatTheoMaDonHang(int maDonHang,Callback<List<PhieuXuat>> callback){
+        if (retrofit!=null){
+            Call<List<PhieuXuat>> api=retrofit.create(RestApi.class).getPhieuXuatTheoMaDonHang(maDonHang);
+            api.enqueue(callback);
+        }
+    }
+    public void createNewChiTietPhieuXuat(ChiTietPhieuXuat chiTietPhieuXuat,Callback<Boolean> callback){
+        if (retrofit!=null){
+            Call<Boolean> api=retrofit.create(RestApi.class).createNewChiTietPhieuXuat(chiTietPhieuXuat.getMaPhieuXuat(),chiTietPhieuXuat.getMaSP(),chiTietPhieuXuat.getSoLuong());
+            api.enqueue(callback);
+        }
+    }
+    public void getAllPhieuXuat(Callback<List<PhieuXuat>> callback){
+        if (retrofit!=null){
+            Call<List<PhieuXuat>> api=retrofit.create(RestApi.class).getAllPhieuXuat();
+            api.enqueue(callback);
+        }
+    }
+    public void getPhieuXuatTheoMaNV(int maNV,Callback<List<PhieuXuat>> callback){
+        if (retrofit!=null){
+            Call<List<PhieuXuat>> api=retrofit.create(RestApi.class).getPhieuXuatTheoMaNV(maNV);
+            api.enqueue(callback);
+        }
+    }
+    public void getPhieuXuatTheoMa(int ma,Callback<List<ChiTietPhieuXuat>> callback){
+        if (retrofit!=null){
+            Call<List<ChiTietPhieuXuat>> api=retrofit.create(RestApi.class).getPhieuXuatTheoMa(ma);
+            api.enqueue(callback);
+        }
+    }
+    public void getAllCTPhieuXuat(Callback<List<ChiTietPhieuXuat>> callback){
+        if (retrofit!=null){
+            Call<List<ChiTietPhieuXuat>> api=retrofit.create(RestApi.class).getAllCTPhieuXuat();
+            api.enqueue(callback);
+        }
+    }
 }

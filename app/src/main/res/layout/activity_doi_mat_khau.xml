@@ -53,6 +53,7 @@
                 android:id="@+id/et_old_password"
                 android:paddingLeft="@dimen/pd15"
                 android:hint="Mật khẩu cũ"
+                android:inputType="textPassword"
                 android:background="@color/text_white"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_mini_height" />
@@ -78,6 +79,7 @@
                 android:id="@+id/et_new_password"
                 android:paddingLeft="@dimen/pd15"
                 android:hint="Mật khẩu mới"
+                android:inputType="textPassword"
                 android:background="@color/text_white"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_mini_height" />
@@ -103,6 +105,7 @@
                 android:id="@+id/et_new_password_repeat"
                 android:paddingLeft="@dimen/pd15"
                 android:hint="Nhập lại mật khẩu mới"
+                android:inputType="textPassword"
                 android:background="@color/text_white"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_mini_height" />
