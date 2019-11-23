@@ -6,47 +6,47 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_NhapHang"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/icon_nhap"
             android:title="Nhập hàng" />
         <item
             android:id="@+id/nav_XuatHang"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_xuat"
             android:title="Xuất hàng" />
         <item
             android:id="@+id/nav_DonHang"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_donhang"
             android:title="Đơn hàng" />
         <item
             android:id="@+id/nav_ThongKe"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_thongke"
             android:title="Thống kê hàng hoá" />
         <item
             android:id="@+id/nav_CSKH"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_cskh"
             android:title="Chăm sóc khách hàng" />
         <item
             android:id="@+id/nav_NhanSu"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_nhansu"
             android:title="Nhân sự" />
         <item
             android:id="@+id/nav_TaiKhoan"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tài khoản" />
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/icon_phongchat"
             android:title="Phòng Chat" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_changePassword"
+            android:icon="@drawable/icon_pass"
             android:title="Đổi mật khẩu" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Thông tin ứng dụng" />
+            android:id="@+id/nav_infoApp"
+            android:icon="@drawable/icon_hotro"
+            android:title="Hỗ trợ" />
         <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_SignUp"
+            android:icon="@drawable/icon_dangxuat"
             android:title="Đăng xuất" />
     </group>
 

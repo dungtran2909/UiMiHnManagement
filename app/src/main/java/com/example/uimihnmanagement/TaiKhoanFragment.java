@@ -198,6 +198,7 @@ public class TaiKhoanFragment extends Fragment {
 
         ivBack=view.findViewById(R.id.iv_backTaiKhoan);
         txtTen=view.findViewById(R.id.txtTen);
+
         avatarView=view.findViewById(R.id.avatar_view);
         imageLoader= new PicassoLoader();
         imageLoader.loadImage(avatarView,"https://raw.githubusercontent.com/quoccuong151197/FirebaseStorage/master/app/src/main/res/drawable/ic.png","Image");
@@ -237,6 +238,7 @@ public class TaiKhoanFragment extends Fragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     private void xuLyUploadStroge(String path) {
         try{
             bitmapCamera=getThumbnail(path);
@@ -246,6 +248,7 @@ public class TaiKhoanFragment extends Fragment {
             Log.e("LOI",ex.toString());
         }
     }
+
     private void xuLyUpload() {
         progressDialog= new ProgressDialog(view.getContext());
         progressDialog.setTitle("Đang xử lý");

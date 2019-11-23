@@ -15,6 +15,7 @@ import com.example.model.ChiTietPhieuNhap;
 import com.example.model.ChiTietPhieuXuat;
 import com.example.model.DanhMuc;
 import com.example.model.ItemNhap;
+import com.example.model.NhanHieu;
 import com.example.model.PhieuNhap;
 import com.example.model.PhieuXuat;
 import com.example.model.SanPham;

@@ -109,6 +109,12 @@ public class ApiService {
             getSanPhamApi.enqueue(callback);
         }
     }
+    public void getListSanPhamTheoNhanHieu(int maNH, Callback<List<SanPham>> callback){
+        if (retrofit !=null){
+            Call<List<SanPham>> getSanPhamApi = retrofit.create(RestApi.class).getListSanPhamTheoNhanHieu(maNH);
+            getSanPhamApi.enqueue(callback);
+        }
+    }
     public void getSanPhamTheoTen(String tenSp,Callback<SanPham> callback){
         if(retrofit != null){
             Call<SanPham> getSanPhamApi = retrofit.create(RestApi.class).getSanPhamTheoTen(tenSp);

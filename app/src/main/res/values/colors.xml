@@ -8,6 +8,8 @@
 
 
     <color name="grey_underline">#CCCACA</color>
+    <color name="text_color_main">#0f7196</color>
+    <color name="greyItem">#7E7A7A</color>
 
 
     <color name="colorText">#F9F7F7</color>

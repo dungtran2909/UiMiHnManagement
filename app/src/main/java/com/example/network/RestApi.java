@@ -28,6 +28,7 @@ public interface RestApi {
     @GET("danhmuc")
     Call<List<DanhMuc>> getDanhMuc();
 
+
     @GET("nhanhieu")
     Call<List<NhanHieu>> getNhanHieu();
 
@@ -54,6 +55,9 @@ public interface RestApi {
 
     @GET("sanpham")
     Call<List<SanPham>> getListSanPhamTheoDanhMuc(@Query("madm") int madm);
+
+    @GET("sanpham")
+    Call<List<SanPham>> getListSanPhamTheoNhanHieu(@Query("maNhanHieu") int manh);
 
     @GET("sanpham")
     Call<SanPham> getSanPhamTheoTen(@Query("tenSanPhamTim") String tensp);

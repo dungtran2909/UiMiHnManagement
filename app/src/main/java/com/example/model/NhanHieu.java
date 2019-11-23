@@ -1,8 +1,17 @@
 package com.example.model;
 
-public class NhanHieu {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class NhanHieu implements Serializable {
+    @SerializedName("MaNhanHieu")
     private int MaNhanHieu;
+
+    @SerializedName("TenNhanHieu")
     private String TenNhanHieu;
+
+    @SerializedName("HinhNhanHieu")
     private int HinhNhanHieu;
 
     public NhanHieu() {

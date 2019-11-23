@@ -255,6 +255,7 @@ public class NhapHangMoiActivity extends AppCompatActivity {
         edtNhanVienNhap.setText(MainActivity.nhanVienLogin.getMaNV()+"-"+MainActivity.nhanVienLogin.getTenNhanVien());
         edtNgayNhap.setText(simpleDateFormat.format(new Date(System.currentTimeMillis())));
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_CODE_IMAGE && resultCode == RESULT_OK && data != null) {
@@ -271,12 +272,14 @@ public class NhapHangMoiActivity extends AppCompatActivity {
         SanPham sanPham=sanPhams.get(positionImage);
         xuLyUpload(sanPham);
     }
+
     public String getRealPathFromURI(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
     }
+
     public Bitmap getThumbnail(String pathHinh)
     {
         BitmapFactory.Options bounds = new BitmapFactory.Options();
@@ -291,6 +294,7 @@ public class NhapHangMoiActivity extends AppCompatActivity {
         opts.inSampleSize = originalSize / 500;
         return BitmapFactory.decodeFile(pathHinh, opts);
     }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
@@ -333,6 +337,7 @@ public class NhapHangMoiActivity extends AppCompatActivity {
         sanPhams.remove(postionXoa);
         sanPhamNhapMoiAdapter.notifyDataSetChanged();
     }
+
     private void xuLyDoi() {
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(NhapHangMoiActivity.this);
         builder.setTitle("Ảnh từ");
